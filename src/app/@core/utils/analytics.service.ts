@@ -6,6 +6,9 @@ import { filter } from 'rxjs/operator/filter';
 
 declare const ga: any;
 
+/**
+ * 提供分析服务
+ */
 @Injectable()
 export class AnalyticsService {
   private enabled: boolean;

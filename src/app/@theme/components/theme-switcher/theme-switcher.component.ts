@@ -28,6 +28,10 @@ export class ThemeSwitcherComponent implements OnInit {
       .subscribe((theme: NbJSThemeOptions) => this.theme = theme);
   }
 
+  /**
+   *  切换主题
+   * @param {boolean} theme
+   */
   toggleTheme(theme: boolean) {
     const boolTheme = this.boolToTheme(theme);
     this.themeService.changeTheme(boolTheme);

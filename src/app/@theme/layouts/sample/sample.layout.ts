@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {
   NbMediaBreakpoint,
   NbMediaBreakpointsService,
@@ -8,9 +8,9 @@ import {
   NbThemeService,
 } from '@nebular/theme';
 
-import { StateService } from '../../../@core/data/state.service';
+import {StateService} from '../../../@core/data/state.service';
 
-import { Subscription } from 'rxjs/Subscription';
+import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/delay';
 
@@ -24,10 +24,7 @@ import 'rxjs/add/operator/delay';
         <ngx-header [position]="sidebar.id === 'left' ? 'normal': 'inverse'"></ngx-header>
       </nb-layout-header>
 
-      <nb-sidebar class="menu-sidebar"
-                   tag="menu-sidebar"
-                   responsive
-                   [right]="sidebar.id === 'right'">
+      <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive [right]="sidebar.id === 'right'">
         <nb-sidebar-header>
           <a href="#" class="btn btn-hero-success main-btn">
             <i class="ion ion-social-github"></i> <span>Support Us</span>
@@ -53,17 +50,18 @@ import 'rxjs/add/operator/delay';
       </nb-layout-footer>
 
       <nb-sidebar class="settings-sidebar"
-                   tag="settings-sidebar"
-                   state="collapsed"
-                   fixed
-                   [right]="sidebar.id !== 'right'">
+                  tag="settings-sidebar"
+                  state="collapsed"
+                  fixed
+                  [right]="sidebar.id !== 'right'">
         <ngx-theme-settings></ngx-theme-settings>
       </nb-sidebar>
     </nb-layout>
   `,
 })
-export class SampleLayoutComponent  implements OnDestroy {
+export class SampleLayoutComponent implements OnDestroy {
 
+  // 子菜单
   subMenu: NbMenuItem[] = [
     {
       title: 'PAGE LEVEL MENU',
@@ -112,18 +110,12 @@ export class SampleLayoutComponent  implements OnDestroy {
   protected sidebarState$: Subscription;
   protected menuClick$: Subscription;
 
-  constructor(protected stateService: StateService,
-              protected menuService: NbMenuService,
-              protected themeService: NbThemeService,
-              protected bpService: NbMediaBreakpointsService,
-              protected sidebarService: NbSidebarService) {
-    this.layoutState$ = this.stateService.onLayoutState()
-      .subscribe((layout: string) => this.layout = layout);
+  constructor(protected stateService: StateService, protected menuService: NbMenuService, protected themeService: NbThemeService, protected bpService: NbMediaBreakpointsService, protected sidebarService: NbSidebarService) {
+    this.layoutState$ = this.stateService.onLayoutState().subscribe((layout: string) => this.layout = layout);
 
-    this.sidebarState$ = this.stateService.onSidebarState()
-      .subscribe((sidebar: string) => {
-        this.sidebar = sidebar;
-      });
+    this.sidebarState$ = this.stateService.onSidebarState().subscribe((sidebar: string) => {
+      this.sidebar = sidebar;
+    });
 
     const isBp = this.bpService.getByName('is');
     this.menuClick$ = this.menuService.onItemSelect()

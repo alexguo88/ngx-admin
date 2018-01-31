@@ -9,8 +9,12 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 
+// 路由数据
 const routes: Routes = [
-  { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
+  {
+    path: 'pages',
+    loadChildren: 'app/pages/pages.module#PagesModule',
+  },
   {
     path: 'auth',
     component: NbAuthComponent,
@@ -41,14 +45,24 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  {
+    path: '',
+    redirectTo: 'pages',
+    pathMatch: 'full'},
+  {
+    path: '**',
+    redirectTo: 'pages',
+  },
 ];
 
+// 路由配置
 const config: ExtraOptions = {
   useHash: true,
 };
 
+/**
+ * 路由
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes, config)],
   exports: [RouterModule],
